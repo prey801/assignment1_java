@@ -1,5 +1,4 @@
-# assignment1_java
-# Car Rental System
+# assignment1_java Car Rental System
 
 ## Overview
 This Car Rental System is a Java-based application developed as part of the BSD 214 Object-Oriented Programming 2 course. It demonstrates the use of Object-Oriented Programming (OOP) principles to create a simple yet functional car rental management system.
@@ -48,4 +47,4 @@ This project is created for educational purposes and is not licensed for commerc
 
 ---
 
-Developed by Brian MUuo for BSD 214 Object-Oriented Programming 2
+Developed by Brian Muuo for BSD 214 Object-Oriented Programming 2
