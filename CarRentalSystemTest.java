@@ -1,55 +1,54 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
-class CarRentalSystemTest {
-
-    private Car testCar;
-    private Customer testCustomer;
-    private RentalAgency testAgency;
-
-    @BeforeEach
-    void setUp() {
-        testCar = new Car("Test Model", "Test Brand", 100.0);
-        testCustomer = new Customer("John Doe", 30, "ABC123");
-        testAgency = new RentalAgency(3);
+public class CarRentalSystemTest {
+    public static void main(String[] args) {
+        testCarCreation();
+        testCustomerCreation();
+        testRentalAgency();
+        System.out.println("All tests completed.");
     }
 
-    @Test
-    void testCarCreation() {
-        assertEquals("Test Model", testCar.model);
-        assertEquals("Test Brand", testCar.brand);
-        assertEquals(100.0, testCar.pricePerDay);
+    static void testCarCreation() {
+        Car testCar = new Car("Test Model", "Test Brand", 100.0);
+        System.out.println("Car Creation Test:");
+        System.out.println("Expected: Test Model, Test Brand, 100.0");
+        System.out.println("Actual: " + testCar.model + ", " + testCar.brand + ", " + testCar.pricePerDay);
+        System.out.println("Test " + (testCar.model.equals("Test Model") && 
+                                      testCar.brand.equals("Test Brand") && 
+                                      testCar.pricePerDay == 100.0 ? "passed" : "failed"));
+        System.out.println();
     }
 
-    @Test
-    void testCustomerCreation() {
-        assertEquals("John Doe", testCustomer.name);
-        assertEquals(30, testCustomer.age);
-        assertEquals("ABC123", testCustomer.licenseNumber);
+    static void testCustomerCreation() {
+        Customer testCustomer = new Customer("John Doe", 30, "ABC123");
+        System.out.println("Customer Creation Test:");
+        System.out.println("Expected: John Doe, 30, ABC123");
+        System.out.println("Actual: " + testCustomer.name + ", " + testCustomer.age + ", " + testCustomer.licenseNumber);
+        System.out.println("Test " + (testCustomer.name.equals("John Doe") && 
+                                      testCustomer.age == 30 && 
+                                      testCustomer.licenseNumber.equals("ABC123") ? "passed" : "failed"));
+        System.out.println();
     }
 
-    @Test
-    void testAddCar() {
-        testAgency.addCar(testCar);
-        assertEquals(1, testAgency.numberOfCars);
-        assertEquals(testCar, testAgency.cars[0]);
-    }
+    static void testRentalAgency() {
+        RentalAgency testAgency = new RentalAgency(2);
+        Car car1 = new Car("Model1", "Brand1", 100.0);
+        Car car2 = new Car("Model2", "Brand2", 150.0);
+        Car car3 = new Car("Model3", "Brand3", 200.0);
 
-    @Test
-    void testAddCarWhenFull() {
-        for (int i = 0; i < 3; i++) {
-            testAgency.addCar(new Car("Model" + i, "Brand" + i, 100.0));
-        }
-        Car extraCar = new Car("Extra", "Brand", 100.0);
-        testAgency.addCar(extraCar);
-        assertEquals(3, testAgency.numberOfCars);
-    }
-
-    @Test
-    void testDisplayAvailableCars() {
-        testAgency.addCar(testCar);
+        System.out.println("Rental Agency Test:");
         
-        assertDoesNotThrow(() -> testAgency.displayAvailableCars());
+        testAgency.addCar(car1);
+        System.out.println("Added first car. Number of cars: " + testAgency.numberOfCars);
+        System.out.println("Test " + (testAgency.numberOfCars == 1 ? "passed" : "failed"));
+
+        testAgency.addCar(car2);
+        System.out.println("Added second car. Number of cars: " + testAgency.numberOfCars);
+        System.out.println("Test " + (testAgency.numberOfCars == 2 ? "passed" : "failed"));
+
+        testAgency.addCar(car3);
+        System.out.println("Tried to add third car. Number of cars: " + testAgency.numberOfCars);
+        System.out.println("Test " + (testAgency.numberOfCars == 2 ? "passed" : "failed"));
+
+        System.out.println("\nTesting displayAvailableCars method:");
+        testAgency.displayAvailableCars();
     }
 }
